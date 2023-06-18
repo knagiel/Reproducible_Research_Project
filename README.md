@@ -4,7 +4,9 @@ This repository includes the contents of the project for our Reproducible Resear
 
 Team: 
 Yelyzaveta Nemchynova 
+
 Elvin Shirinov 
+
 Kathryn Nagiel
 
 
