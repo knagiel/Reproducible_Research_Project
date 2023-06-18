@@ -25,6 +25,31 @@ print(summary(data))
 cat("\nCorrelation matrix:\n")
 print(cor(data))
 
+# --- DATA VISUALIZATION ---
+
+# Define independent variables (all except 'Outcome')
+independent_vars <- names(data)[!names(data) %in% "Outcome"]
+
+# Create histograms for each independent variable
+for (var in independent_vars) {
+  p <- ggplot(data, aes_string(x = var, fill = "factor(Outcome)")) +
+    geom_histogram(binwidth = 1, color = "white") +
+    labs(x = var, y = "Count") +
+    scale_fill_manual(values = c("#69b3a2", "#e9ecef"), labels = c("No Diabetes", "Diabetes"))
+  
+  print(p)
+}
+
+# Create boxplots for each independent variable
+for (var in independent_vars) {
+  p <- ggplot(data, aes_string(x = "factor(Outcome)", y = var, fill = "factor(Outcome)")) +
+    geom_boxplot() +
+    labs(x = "Outcome", y = var) +
+    scale_fill_manual(values = c("#69b3a2", "#e9ecef"), labels = c("No Diabetes", "Diabetes"))
+  
+  print(p)
+}
+
 # --- MODEL TRAINING --- LOGIT
 
 # Define features and target variables
@@ -134,30 +159,6 @@ ourmodelprediction <- ifelse(ourmodelprediction > 0.5, 1, 0)
 cat("\nPrediction on new data:\n")
 print(ourmodelprediction)
 
-# --- DATA VISUALIZATION ---
-
-# Define independent variables (all except 'Outcome')
-independent_vars <- names(data)[!names(data) %in% "Outcome"]
-
-# Create histograms for each independent variable
-for (var in independent_vars) {
-  p <- ggplot(data, aes_string(x = var, fill = "factor(Outcome)")) +
-    geom_histogram(binwidth = 1, color = "white") +
-    labs(x = var, y = "Count") +
-    scale_fill_manual(values = c("#69b3a2", "#e9ecef"), labels = c("No Diabetes", "Diabetes"))
-  
-  print(p)
-}
-
-# Create boxplots for each independent variable
-for (var in independent_vars) {
-  p <- ggplot(data, aes_string(x = "factor(Outcome)", y = var, fill = "factor(Outcome)")) +
-    geom_boxplot() +
-    labs(x = "Outcome", y = var) +
-    scale_fill_manual(values = c("#69b3a2", "#e9ecef"), labels = c("No Diabetes", "Diabetes"))
-  
-  print(p)
-}
 # Creating a confusion matrix plot
 
 # create a function to draw the confusion matrix
