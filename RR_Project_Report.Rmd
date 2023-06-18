@@ -48,3 +48,111 @@ Thus, our criteria for successful replication are multifaceted, involving perfor
 ## Steps Taken to Ensure we can Reproduce the Model 
 * Data Importation: The first thing is to import the same dataset successfully into R. We need to ensure that the dataframe imported in R is identical to the the original dataframe used in the Python model to make sure all the observations and variables match.
 
+* Data Preprocessing: Identical pre-processing steps performed in the Python code, such as splitting the data into independent and dependent variables, need to be successfully implemented in R.
+
+* Model Training: We need to train a logistic regression model in R using the same training set as in Python. It's critical to ensure that the training set in R is identical to the one used in Python. The 'glm' function in R can be used to train the logistic regression model.
+
+* Random Seed: To ensure reproducibility, it's important to set a seed for functions that involve random processes (such as splitting the data into train and test sets). This seed should be the same as the one used in Python.
+
+## Description of the New Model Performed on the Dataset and Results
+
+For the new model we have created a logit and probit model with extended EDA to assess if we can reproduce similar results of the logistical regression model. We have taken the steps to ensure that we adhere to RR principles in the new model with clean and clear code and comments.Our extended EDA contains overview of the distribution of diabetes and no diabetes patients.  
+
+```{r include=FALSE}
+# Load necessary libraries
+library(tidyverse)
+library(caret)
+library(glmnet)
+library(gplots)
+
+# --- DATA PREPARATION ---
+
+# Set the file path to the CSV file
+filepath <- "C:/Users/lizan/OneDrive/Desktop/diabetes2.csv"
+
+# Read the CSV file
+data <- read_csv("diabetes2.csv")
+
+# Display the structure of the dataframe
+str(data)
+
+# Check for missing values and provide a summary
+cat("Missing values per column:\n")
+print(colSums(is.na(data)))
+cat("\nData Summary:\n")
+print(summary(data))
+
+# Correlation matrix
+cat("\nCorrelation matrix:\n")
+print(cor(data))
+
+# --- DATA VISUALIZATION ---
+
+# Define independent variables (all except 'Outcome')
+independent_vars <- names(data)[!names(data) %in% "Outcome"]
+
+# Create histograms for each independent variable
+for (var in independent_vars) {
+  p <- ggplot(data, aes_string(x = var, fill = "factor(Outcome)")) +
+    geom_histogram(binwidth = 1, color = "white") +
+    labs(x = var, y = "Count") +
+    scale_fill_manual(values = c("#69b3a2", "#e9ecef"), labels = c("No Diabetes", "Diabetes"))
+  
+  print(p)
+}
+
+# Create boxplots for each independent variable
+for (var in independent_vars) {
+  p2 <- ggplot(data, aes_string(x = "factor(Outcome)", y = var, fill = "factor(Outcome)")) +
+    geom_boxplot() +
+    labs(x = "Outcome", y = var) +
+    scale_fill_manual(values = c("#69b3a2", "#e9ecef"), labels = c("No Diabetes", "Diabetes"))
+  
+  print(p2)
+}
+
+# --- MODEL TRAINING --- LOGIT
+
+# Define features and target variables
+features <- c('Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age')
+x <- data[features]
+y <- data$Outcome
+
+# Split the dataset into training and testing sets
+# Setting seed for reproducibility
+set.seed(0)
+
+# Splitting the data
+splitIndex <- createDataPartition(data$Outcome, p = .90, list = FALSE, times = 1)
+train <- data[splitIndex,]
+test  <- data[-splitIndex,]
+
+# Fitting the logistic regression model
+logit <- glm(Outcome ~ ., data = train, family = binomial())
+
+# Display the model summary
+cat("\nLogistic Regression Model Summary:\n")
+print(summary(logit))
+
+# --- MODEL EVALUATION ---
+
+# Predicting on the test set
+predictions <- predict(logit, newdata = test, type = "response")
+
+# Converting probabilities to class labels
+predicted_classes <- ifelse(predictions > 0.5, 1, 0)
+
+# Creating the confusion matrix
+confusion_matrix <- table(predicted_classes, test$Outcome)
+
+# Calculating accuracy
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+
+# Print evaluation metrics
+cat("\nConfusion Matrix:\n")
+print(confusion_matrix)
+cat("\nAccuracy:", accuracy, "\n")
+
+# Save the model
+saveRDS(logit, file = "logistic_reg.rds")
+
