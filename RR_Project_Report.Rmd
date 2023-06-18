@@ -1,0 +1,17 @@
+---
+title: "RR Project Report"
+output: html_document
+date: '2023-06-18'
+---
+
+Yelyzaveta Nemchynova
+Elvin Shirinov
+Kathryn Nagiel 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction 
+
+The goal for this project has been to take a look at a diabetes dataset and logisitical regression model which would be used to predict whether a particular patient has diabetes or not.The dataset used in the model is provided by the Pima Indians Diabetes database which includes information about female patients who are 21 years old or older. For the purpose of this project, we will take a look at the logistical regression model based on this dataset, translate the existing logistical regression model from python to R, apply modifications to the original code and model, and then apply another regression model to the dataset and compare the results. 
