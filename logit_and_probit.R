@@ -190,6 +190,3 @@ ourmodelprediction <- ifelse(ourmodelprediction > 0.5, 1, 0)
 
 cat("\nPrediction on new data:\n")
 print(ourmodelprediction)
-
-
-
