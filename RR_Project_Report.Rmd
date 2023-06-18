@@ -15,3 +15,23 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction 
 
 The goal for this project has been to take a look at a diabetes dataset and logisitical regression model which would be used to predict whether a particular patient has diabetes or not.The dataset used in the model is provided by the Pima Indians Diabetes database which includes information about female patients who are 21 years old or older. For the purpose of this project, we will take a look at the logistical regression model based on this dataset, translate the existing logistical regression model from python to R, apply modifications to the original code and model, and then apply another regression model to the dataset and compare the results. 
+
+## Assessment of Original Code against RR Principles 
+
+* Lack of Detailed Documentation: While there is some commentary, the code could benefit from more extensive documentation to explain every part of the code. Why were certain steps taken? What do the numbers represent? This information is crucial for someone else who might use this code to understand what's going on.
+
+* Fixed Random State: The random state in the train-test split is fixed to a particular value. While this does allow for reproducibility, it doesn't reflect the randomness you would encounter with different samples. A better approach might be to highlight that the specific random state can impact the result, and in a true reproducibility context, the model should be tested with various random states or use a technique like cross-validation.
+
+* Dependency Information: The code does not specify which versions of the libraries (like pandas, numpy, seaborn, matplotlib, and scikit-learn) are being used. This could potentially lead to problems if there are backward-incompatible changes in future versions of these libraries.
+
+* Data Availability: The data is loaded from a local path, but there's no indication of where the data can be obtained, or what the data should look like, if the reader wants to run the code on their own system. There should be a link to where the data can be downloaded, or instructions on how to obtain it.
+
+* Magic Numbers: There are several "magic numbers" in the code (for example, the test size in train-test split, max_iter in Logistic Regression). These numbers are set without any explanation as to why those specific values were chosen. Were other numbers tried? If so, why were these chosen over others?
+
+* Data Quality Checks: There's an assumption that the data is clean and doesn't require any pre-processing (like dealing with missing or incorrect values). But in reality, data is usually messy and requires cleaning, so it would be beneficial to include some data pre-processing steps.
+
+* Model Saving: While the model is being saved, the loading and usage of the saved model are not shown. For completeness, there should be steps showing how to load the saved model and make predictions with it.
+
+* Evaluation Metrics: The model's performance is measured using accuracy, which is not always an appropriate measure. Depending on the dataset's imbalance, precision, recall, F1-score, AUC-ROC, etc. might be more suitable. Additionally, reporting only a single metric doesn't give a full picture of the model's performance.
+
+In summary, although the code could run and perform the task of predicting diabetes, it is not entirely up to the standards of reproducible research. More thorough documentation, better data access, and more robust model testing and reporting would be required.
