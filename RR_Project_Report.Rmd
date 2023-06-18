@@ -37,11 +37,11 @@ The goal for this project has been to take a look at a diabetes dataset and logi
 In summary, although the code could run and perform the task of predicting diabetes, it is not entirely up to the standards of reproducible research. More thorough documentation, better data access, and more robust model testing and reporting would be required.
 
 ## Criteria Used to Conclude if we Reproduced the Referred Model 
-To ensure that we have successfully reproduced the original model, we have established several key criteria. Firstly, we evaluate the Model Performance by comparing the accuracy scores from the original Python model and our replicated model in R. This measure provides a direct comparison of how well both models perform in classifying the data accurately.
+To ensure that we have successfully reproduced the original model, we have established several key criteria. Firstly, we evaluate the **Model Performance** by comparing the accuracy scores from the original Python model and our replicated model in R. This measure provides a direct comparison of how well both models perform in classifying the data accurately.
 
-Secondly, we assess the Predictions made by our R model against the original Python model. For this, we apply both models to the same new dataset and compare their outputs. Consistency in the predictions made by both models would further validate the success of our replication.
+Secondly, we assess the **Predictions** made by our R model against the original Python model. For this, we apply both models to the same new dataset and compare their outputs. Consistency in the predictions made by both models would further validate the success of our replication.
 
-Finally, we investigate the Model Parameters, specifically the coefficients of the logistic regression models. These were not provided in the original code, and hence, we had to extend the original code to extract this information. This includes retrieving the model's summary, which gives us the coefficients, standard deviations, z-values, and p-values. Comparing these parameters from both models will help us confirm that not only do they perform similarly, but they also operate on the same underlying assumptions and mathematical foundation.
+Finally, we investigate the **Model Parameters**, specifically the coefficients of the logistic regression models. These were not provided in the original code, and hence, we had to extend the original code to extract this information. This includes retrieving the model's summary, which gives us the coefficients, standard deviations, z-values, and p-values. Comparing these parameters from both models will help us confirm that not only do they perform similarly, but they also operate on the same underlying assumptions and mathematical foundation.
 
 Thus, our criteria for successful replication are multifaceted, involving performance metrics, prediction consistency, and model parameters. 
 
