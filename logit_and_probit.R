@@ -45,3 +45,40 @@ logit <- glm(Outcome ~ ., data = train, family = binomial())
 cat("\nLogistic Regression Model Summary:\n")
 print(summary(logit))
 
+# --- MODEL EVALUATION ---
+
+# Predicting on the test set
+predictions <- predict(logit, newdata = test, type = "response")
+
+# Converting probabilities to class labels
+predicted_classes <- ifelse(predictions > 0.5, 1, 0)
+
+# Creating the confusion matrix
+confusion_matrix <- table(predicted_classes, test$Outcome)
+
+# Calculating accuracy
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+
+# Print evaluation metrics
+cat("\nConfusion Matrix:\n")
+print(confusion_matrix)
+cat("\nAccuracy:", accuracy, "\n")
+# Save the model
+saveRDS(logit, file = "logistic_reg.rds")
+
+# --- PREDICTION ON NEW DATA ---
+
+# User-defined data
+new_data <- data.frame(Pregnancies = 5, Glucose = 0, BloodPressure = 33.7, 
+                       SkinThickness = 50, Insulin = 150, BMI = 74, 
+                       DiabetesPedigreeFunction = 0.5, Age = 53)
+
+# Load the saved model
+loaded_model <- readRDS("logistic_reg.rds")
+
+# Predict on new data
+ourmodelprediction <- predict(loaded_model, newdata = new_data, type = 'response')
+ourmodelprediction <- ifelse(ourmodelprediction > 0.5, 1, 0)
+
+cat("\nPrediction on new data:\n")
+print(ourmodelprediction)
