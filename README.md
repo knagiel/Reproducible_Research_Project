@@ -22,6 +22,5 @@ probit_reg.rds - contains logit/probit model
 
 RR_Project_Report.Rmd - contains the report write up for the project 
 
-
-
+RR_Project_Report.html - contains html version of rmarkdown report
 
