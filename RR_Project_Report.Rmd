@@ -222,3 +222,46 @@ ourmodelprediction <- ifelse(ourmodelprediction > 0.5, 1, 0)
 cat("\nPrediction on new data:\n")
 print(ourmodelprediction)
 
+###
+# Prints the version of R, the system it's running on, and the packages that are currently loaded
+sessionInfo()
+
+
+```
+
+
+```{r echo=FALSE}
+print(p)
+```
+
+```{r echo=FALSE}
+plot(p2)
+```
+
+We have managed to reproduce the logistical regression model which have provided results which were practically identical with some insignificant differences when it comes to the results of the coefficients. However we were not able to obtain the same confusion matrix with accuracy score of 0.87 vs. 0.84 but this may have been contributed to the fact that the prediction on the user defined data was also inconsistent. 
+
+```{r echo=FALSE}
+cat("\nLogistic Regression Model Summary:\n")
+print(summary(logit))
+```
+
+
+```{r echo=FALSE}
+cat("\nProbit Regression Model Summary:\n")
+print(summary(probit))
+```
+
+```{r echo=FALSE}
+# Print evaluation metrics
+cat("\nConfusion Matrix:\n")
+print(confusion_matrix)
+cat("\nAccuracy:", accuracy, "\n")
+```
+## References: 
+
+* Dataset:  https://www.kaggle.com/datasets/kandij/diabetes-dataset
+* Original Code File used: https://www.kaggle.com/code/sujithmandala/easy-diabetics-prediction-logistic-regression 
+
+Libraries Used: 
+"gplots: 3.1.3"    "glmnet: 4.1.7"    "Matrix: 1.5.4.1"  "caret: 6.0.94"    "lattice: 0.21.8"  "lubridate: 1.9.2" "forcats: 1.0.0"   "stringr: 1.5.0"   "dplyr: 1.1.2"     "purrr: 1.0.1"     "readr: 2.1.4"     "tidyr: 1.3.0" "tibble: 3.2.1"    "ggplot2: 3.4.2"   "tidyverse: 2.0.0" "stats: 4.3.1"     "graphics: 4.3.1"  "grDevices: 4.3.1" "utils: 4.3.1"     "datasets: 4.3.1"  "methods: 4.3.1"   "base: 4.3.1"
+
