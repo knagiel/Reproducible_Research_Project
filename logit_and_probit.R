@@ -3,11 +3,14 @@ library(tidyverse)
 library(caret)
 library(glmnet)
 library(gplots)
+library(readr)
 
 # --- DATA PREPARATION ---
 
 # Read the CSV file
-data <- read_csv("diabetes2.csv")
+csv_url <- "https://raw.githubusercontent.com/knagiel/Reproducible_Research_Project/main/diabetes2.csv"
+
+data <- read_csv(csv_url)
 
 # Display the structure of the dataframe
 str(data)
@@ -186,3 +189,4 @@ draw_confusion_matrix <- function(cm) {
 
 # call the function with your confusion matrix
 draw_confusion_matrix(confusion_matrix)
+
