@@ -428,24 +428,25 @@ and more robust model testing and reporting would be required.</p>
 <div id="criteria-used-to-conclude-if-we-reproduced-the-referred-model" class="section level2">
 <h2>Criteria Used to Conclude if we Reproduced the Referred Model</h2>
 <p>To ensure that we have successfully reproduced the original model, we
-have established several key criteria. Firstly, we evaluate the Model
-Performance by comparing the accuracy scores from the original Python
-model and our replicated model in R. This measure provides a direct
-comparison of how well both models perform in classifying the data
-accurately.</p>
-<p>Secondly, we assess the Predictions made by our R model against the
-original Python model. For this, we apply both models to the same new
-dataset and compare their outputs. Consistency in the predictions made
-by both models would further validate the success of our
-replication.</p>
-<p>Finally, we investigate the Model Parameters, specifically the
-coefficients of the logistic regression models. These were not provided
-in the original code, and hence, we had to extend the original code to
-extract this information. This includes retrieving the model’s summary,
-which gives us the coefficients, standard deviations, z-values, and
-p-values. Comparing these parameters from both models will help us
-confirm that not only do they perform similarly, but they also operate
-on the same underlying assumptions and mathematical foundation.</p>
+have established several key criteria. Firstly, we evaluate the
+<strong>Model Performance</strong> by comparing the accuracy scores from
+the original Python model and our replicated model in R. This measure
+provides a direct comparison of how well both models perform in
+classifying the data accurately.</p>
+<p>Secondly, we assess the <strong>Predictions</strong> made by our R
+model against the original Python model. For this, we apply both models
+to the same new dataset and compare their outputs. Consistency in the
+predictions made by both models would further validate the success of
+our replication.</p>
+<p>Finally, we investigate the <strong>Model Parameters</strong>,
+specifically the coefficients of the logistic regression models. These
+were not provided in the original code, and hence, we had to extend the
+original code to extract this information. This includes retrieving the
+model’s summary, which gives us the coefficients, standard deviations,
+z-values, and p-values. Comparing these parameters from both models will
+help us confirm that not only do they perform similarly, but they also
+operate on the same underlying assumptions and mathematical
+foundation.</p>
 <p>Thus, our criteria for successful replication are multifaceted,
 involving performance metrics, prediction consistency, and model
 parameters.</p>
@@ -567,13 +568,12 @@ also inconsistent.</p>
 <li>Dataset: <a href="https://www.kaggle.com/datasets/kandij/diabetes-dataset" class="uri">https://www.kaggle.com/datasets/kandij/diabetes-dataset</a></li>
 <li>Original Code File used: <a href="https://www.kaggle.com/code/sujithmandala/easy-diabetics-prediction-logistic-regression" class="uri">https://www.kaggle.com/code/sujithmandala/easy-diabetics-prediction-logistic-regression</a></li>
 </ul>
-<p>Libraries Used:</p>
-<p>“gplots: 3.1.3” “glmnet: 4.1.7” “Matrix: 1.5.4.1” “caret: 6.0.94”
-“lattice: 0.21.8” “lubridate: 1.9.2” “forcats: 1.0.0” “stringr: 1.5.0”
-“dplyr: 1.1.2” “purrr: 1.0.1” “readr: 2.1.4” “tidyr: 1.3.0” “tibble:
-3.2.1” “ggplot2: 3.4.2” “tidyverse: 2.0.0” “stats: 4.3.1” “graphics:
-4.3.1” “grDevices: 4.3.1” “utils: 4.3.1” “datasets: 4.3.1” “methods:
-4.3.1” “base: 4.3.1”</p>
+<p>Libraries Used: “gplots: 3.1.3” “glmnet: 4.1.7” “Matrix: 1.5.4.1”
+“caret: 6.0.94” “lattice: 0.21.8” “lubridate: 1.9.2” “forcats: 1.0.0”
+“stringr: 1.5.0” “dplyr: 1.1.2” “purrr: 1.0.1” “readr: 2.1.4” “tidyr:
+1.3.0” “tibble: 3.2.1” “ggplot2: 3.4.2” “tidyverse: 2.0.0” “stats:
+4.3.1” “graphics: 4.3.1” “grDevices: 4.3.1” “utils: 4.3.1” “datasets:
+4.3.1” “methods: 4.3.1” “base: 4.3.1”</p>
 </div>
 
 
